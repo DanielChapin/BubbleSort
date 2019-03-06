@@ -85,7 +85,7 @@ public class BubbleSortMain extends JPanel {
 					//  If there isn't an array, create a new one with the length the user presents.
 //					System.out.println("Enter the amount of items you would like.");
 //					initUnsortedArray(new Scanner(System.in).nextInt());
-					initUnsortedArray(20);
+					initUnsortedArray(25);
 					render();
 				}
 			}
@@ -115,6 +115,8 @@ public class BubbleSortMain extends JPanel {
 			if((now = System.nanoTime()) - lastLoopTime >= loopTime) {
 				//  Set the time of the last loop to now because the lastLoop is occurring.
 				lastLoopTime = now;
+				System.out.println(doSortAutomatically);
+				if(!doSortAutomatically) return;
 				//  Take a step and then render.
 				takeSortingStep();
 				render();
