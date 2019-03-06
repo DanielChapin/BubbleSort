@@ -68,7 +68,7 @@ public class BubbleSortMain extends JPanel {
 
 			@Override
 			public void keyReleased(KeyEvent event) {
-				if(unsortedArray != null) 
+				if(unsortedArray != null && !completed) 
 					switch(event.getKeyCode()) {
 					//  If space is pressed, only make one step.
 					case KeyEvent.VK_SPACE:
@@ -82,10 +82,12 @@ public class BubbleSortMain extends JPanel {
 						break;
 					}
 				else {
+					completed = false;
+					currentIndex = 0;
 					//  If there isn't an array, create a new one with the length the user presents.
 //					System.out.println("Enter the amount of items you would like.");
 //					initUnsortedArray(new Scanner(System.in).nextInt());
-					initUnsortedArray(20);
+					initUnsortedArray(48);
 					render();
 				}
 			}
@@ -105,7 +107,7 @@ public class BubbleSortMain extends JPanel {
 		 *  now is the current time, lastLoopTime is the last update time, 
 		 *  loopTime is the time to wait between updating.
 		 */
-		long now = System.nanoTime(), lastLoopTime = now, loopTime = 1000000000 / 50;
+		long now = System.nanoTime(), lastLoopTime = now, loopTime = 1000000000 / 250;
 		
 		/*  
 		 *  repeatedly set now to the current time, and check if the time since the 
@@ -115,6 +117,7 @@ public class BubbleSortMain extends JPanel {
 			if((now = System.nanoTime()) - lastLoopTime >= loopTime) {
 				//  Set the time of the last loop to now because the lastLoop is occurring.
 				lastLoopTime = now;
+				if(!doSortAutomatically || completed) return;
 				//  Take a step and then render.
 				takeSortingStep();
 				render();
@@ -126,6 +129,7 @@ public class BubbleSortMain extends JPanel {
 		if(++currentIndex == unsortedArray.length - 1) {
 			if(changesMade == 0) {
 				completed = true;
+				doSortAutomatically = false;
 				return;
 			}
 			currentIndex = 0;
