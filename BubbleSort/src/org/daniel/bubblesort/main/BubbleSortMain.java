@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -30,6 +29,8 @@ public class BubbleSortMain extends JPanel {
 	
 	//  Declaration of the current index in the array, by default: 0, or the first element.
 	private int currentIndex = 0;
+	private int changesMade = 0;
+	private boolean completed = false;
 	
 	//  Declaration of whether or not the program should sort without user input.
 	private boolean doSortAutomatically = false;
@@ -82,7 +83,7 @@ public class BubbleSortMain extends JPanel {
 					}
 				else {
 					//  If there isn't an array, create a new one with the length the user presents.
-					System.out.println("Enter the amount of items you would like.");
+//					System.out.println("Enter the amount of items you would like.");
 //					initUnsortedArray(new Scanner(System.in).nextInt());
 					initUnsortedArray(20);
 					render();
@@ -104,7 +105,7 @@ public class BubbleSortMain extends JPanel {
 		 *  now is the current time, lastLoopTime is the last update time, 
 		 *  loopTime is the time to wait between updating.
 		 */
-		long now = System.nanoTime(), lastLoopTime = now, loopTime = 1000000000 / 5;
+		long now = System.nanoTime(), lastLoopTime = now, loopTime = 1000000000 / 50;
 		
 		/*  
 		 *  repeatedly set now to the current time, and check if the time since the 
@@ -122,12 +123,19 @@ public class BubbleSortMain extends JPanel {
 	
 	private void takeSortingStep() {
 		//  Iterate the currentIndex, if it's at the end, go to the beginning.
-		if(++currentIndex == unsortedArray.length - 1) currentIndex = 0;
-		System.out.println(unsortedArray[currentIndex] + " > " + unsortedArray[currentIndex + 1]);
+		if(++currentIndex == unsortedArray.length - 1) {
+			if(changesMade == 0) {
+				completed = true;
+				return;
+			}
+			currentIndex = 0;
+			changesMade = 0;
+		}
 		if(unsortedArray[currentIndex] > unsortedArray[currentIndex + 1]) {
 			final int temp = unsortedArray[currentIndex];
 			unsortedArray[currentIndex] = unsortedArray[currentIndex + 1];
 			unsortedArray[currentIndex + 1] = temp;
+			changesMade++;
 		}
 	}
 
@@ -143,12 +151,14 @@ public class BubbleSortMain extends JPanel {
 			 *  and the one it is being compared against blue.
 			 *  All the others are made white.
 			 */
-			if(i == currentIndex + 1) graphics.setColor(Color.RED);
-			else if(i == currentIndex + 2) graphics.setColor(Color.BLUE);
-			else graphics.setColor(Color.WHITE);
+			if(completed) 
+				graphics.setColor(Color.getHSBColor((float) i / unsortedArray.length, 1f, 1f));
+			else
+				if(i == currentIndex + 1) graphics.setColor(Color.RED);
+				else if(i == currentIndex + 2) graphics.setColor(Color.BLUE);
+				else graphics.setColor(Color.WHITE);
 			graphics.fillRect(barWidth * i, this.getHeight() - unsortedArray[i], barWidth, unsortedArray[i]);
 		}
-		System.out.println(barWidth);
-		
 	}
+	
 }
