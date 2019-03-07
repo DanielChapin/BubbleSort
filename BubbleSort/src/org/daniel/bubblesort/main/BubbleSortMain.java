@@ -29,7 +29,9 @@ public class BubbleSortMain extends JPanel {
 	
 	//  Declaration of the current index in the array, by default: 0, or the first element.
 	private int currentIndex = 0;
+	//  The amount of changes made during this sorting cycle.
 	private int changesMade = 0;
+	//  Finished sorting?
 	private boolean completed = false;
 	
 	//  Declaration of whether or not the program should sort without user input.
@@ -151,7 +153,8 @@ public class BubbleSortMain extends JPanel {
 		//  Loop through all of the ints in the array and draw them.
 		for(int i = 0; i < unsortedArray.length; i++) {
 			/*
-			 *  Make the current index red to make it pop, 
+			 * 	Go through the spectrum if finished.
+			 *  Otherwise, make the current index red to make it pop, 
 			 *  and the one it is being compared against blue.
 			 *  All the others are made white.
 			 */
