@@ -83,7 +83,7 @@ public class BubbleSortMain extends JPanel {
 				} else {
 					completed = false;
 					currentIndex = 0;
-					initUnsortedArray(48);
+					initUnsortedArray(24);
 					render();
 				}
 			}
@@ -103,7 +103,7 @@ public class BubbleSortMain extends JPanel {
 		 *  now is the current time, lastLoopTime is the last update time, 
 		 *  loopTime is the time to wait between updating.
 		 */
-		long now = System.nanoTime(), lastLoopTime = now, loopTime = 1000000000 / 250;
+		long now = System.nanoTime(), lastLoopTime = now, loopTime = 1000000000 / 25;
 		
 		/*  
 		 *  repeatedly set now to the current time, and check if the time since the 
