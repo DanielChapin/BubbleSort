@@ -47,11 +47,9 @@ public class BubbleSortMain extends JPanel {
 		//  Declare and init frame.
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //  Stop the program when frame closes.
-//		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  //  Set size of frame to size of screen
-		frame.setSize(600, 300);
-//		frame.setUndecorated(true);  //  Remove the bar on top.
+		frame.setSize(600, 300);     //  Set the size of the frame.
 		frame.setContentPane(this);  //  Set content pane to self for easy graphics.
-		frame.setVisible(true);  // Make the frame visible.
+		frame.setVisible(true);      // Make the frame visible.
 		
 		this.setBackground(Color.gray);
 		
@@ -82,13 +80,9 @@ public class BubbleSortMain extends JPanel {
 						doSortAutomatically = !doSortAutomatically;
 						if(doSortAutomatically) startSortingLoop();
 						break;
-					}
-				else {
+				} else {
 					completed = false;
 					currentIndex = 0;
-					//  If there isn't an array, create a new one with the length the user presents.
-//					System.out.println("Enter the amount of items you would like.");
-//					initUnsortedArray(new Scanner(System.in).nextInt());
 					initUnsortedArray(48);
 					render();
 				}
@@ -129,6 +123,7 @@ public class BubbleSortMain extends JPanel {
 	private void takeSortingStep() {
 		//  Iterate the currentIndex, if it's at the end, go to the beginning.
 		if(++currentIndex == unsortedArray.length - 1) {
+			//  If we are at the end, and nothing was changed, it's done!
 			if(changesMade == 0) {
 				completed = true;
 				doSortAutomatically = false;
@@ -137,6 +132,7 @@ public class BubbleSortMain extends JPanel {
 			currentIndex = 0;
 			changesMade = 0;
 		}
+		//  If the current is larger than the next, swap the two.
 		if(unsortedArray[currentIndex] > unsortedArray[currentIndex + 1]) {
 			final int temp = unsortedArray[currentIndex];
 			unsortedArray[currentIndex] = unsortedArray[currentIndex + 1];
