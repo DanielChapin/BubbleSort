@@ -155,7 +155,7 @@ public class BubbleSortMain extends JPanel {
 			 *  All the others are made white.
 			 */
 			if(completed) 
-				graphics.setColor(Color.getHSBColor((float) i / unsortedArray.length, 1f, 1f));
+				graphics.setColor(Color.getHSBColor((float) i / (unsortedArray.length - 1), 1f, 1f));
 			else
 				if(i == currentIndex + 1) graphics.setColor(Color.RED);
 				else if(i == currentIndex + 2) graphics.setColor(Color.BLUE);
