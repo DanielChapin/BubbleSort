@@ -7,8 +7,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
- /*
+	
+ /* 
   * Bubble Sort
   * By: Daniel Chapin
   * 	BubbleSort is a graphical representation of the bubble sort algorithm.
@@ -36,7 +36,7 @@ public class BubbleSortMain extends JPanel {
 	
 	//  Declaration of whether or not the program should sort without user input.
 	private boolean doSortAutomatically = false;
-
+	
 	//  Main method
 	public static void main(String[] args) {
 		//  Init a new BubbleSortMain in order to create a JPanel and to stop working statically.
@@ -55,17 +55,17 @@ public class BubbleSortMain extends JPanel {
 		
 		//  Add a key listener to the frame in order to get keyboard input.
 		frame.addKeyListener(new KeyListener() {
-
+			
 			@Override
 			public void keyTyped(KeyEvent event) {
 				
 			}
-
+			
 			@Override
 			public void keyPressed(KeyEvent event) {
 				
 			}
-
+			
 			@Override
 			public void keyReleased(KeyEvent event) {
 				if(unsortedArray != null && !completed) 
@@ -140,7 +140,7 @@ public class BubbleSortMain extends JPanel {
 			changesMade++;
 		}
 	}
-
+	
 	private void render() {
 		//  Get the Graphics object of the JPanel.
 		final Graphics graphics = this.getGraphics();
